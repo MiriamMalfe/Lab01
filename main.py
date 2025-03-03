@@ -94,6 +94,33 @@ while risposta == 0 and livelloAttuale <= max :
             else:
                 c = c+1
 
+print("Il tuo livello attuale è ", livelloAttuale)
+nickname = input("Inserisci il tuo nickname: ")
+fileTemp = open("temporaneo.txt", "w")
+trovato = 0
+
+for p in punti:
+    p=p.strip("\n")
+    riga = p.split(" ")
+    nuovaR = ""
+
+    if riga[0] == nickname:
+        nuovaR = nickname + " "+ str(livelloAttuale) + "\n"
+        fileTemp.write(nuovaR)
+    else:
+        nuovaR = riga[0]+ " "+ riga[1] + "\n"
+        fileTemp.write(nuovaR)
+if trovato == 0:
+    fileTemp.write(nickname + " "+ str(livelloAttuale)+ "\n")
+
+fileTemp.close()
+punti.close()
+
+scrivi = open("punti.txt", "w")
+leggi = open("temporaneo.txt", "r")
+
+for l in leggi:
+    scrivi.write(l)
 
 
 
